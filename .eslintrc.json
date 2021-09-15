@@ -20,6 +20,7 @@
         "eslint-plugin-import-helpers"
     ],
     "rules": {
+        "prettier/prettier": "error",
         "camelcase": "off",
         "import/no-unresolved": "error",
         "@typescript-eslint/naming-convention": [
@@ -63,7 +64,9 @@
 
     "settings": {
         "import/resolver": {
-          "typescript": {}
+          "node": {
+            "extensions": [".js", ".jsx", ".ts", ".tsx"]
+          }
         }
       }
 }
