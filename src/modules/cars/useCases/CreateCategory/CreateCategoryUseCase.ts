@@ -1,7 +1,7 @@
-import { ICreateCategoryDTO } from '../dtos/ICreateCategoryDTO';
-import { ICategoriesRepository } from '../repositories/ICategoriesRepository';
+import { ICreateCategoryDTO } from '../../dtos/ICreateCategoryDTO';
+import { ICategoriesRepository } from '../../repositories/ICategoriesRepository';
 
-class CreateCategoryService {
+class CreateCategoryUseCase {
   constructor(private categoryRepository: ICategoriesRepository) {}
 
   handle({ description, name }: ICreateCategoryDTO): void {
@@ -14,4 +14,4 @@ class CreateCategoryService {
   }
 }
 
-export { CreateCategoryService };
+export { CreateCategoryUseCase };
