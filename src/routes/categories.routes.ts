@@ -8,6 +8,7 @@ import { listCategoryController } from '../modules/cars/useCases/listCategories'
 const categoriesRouter = Router();
 
 categoriesRouter.post('/', (request, response) => {
+  console.log('test auto reload');
   return createCategoryController.handle(request, response);
 });
 
