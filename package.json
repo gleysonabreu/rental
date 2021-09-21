@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "tsnd --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts"
+    "dev": "tsnd --inspect --transpile-only --ignore-watch node_modules --poll --respawn src/server.ts"
   },
   "devDependencies": {
     "@types/csv-parse": "^1.2.2",
