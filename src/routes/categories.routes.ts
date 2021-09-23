@@ -1,15 +1,14 @@
 import { Router } from 'express';
 import multer from 'multer';
 
-import { createCategoryController } from '../modules/cars/useCases/CreateCategory';
+import createCategoryController from '../modules/cars/useCases/CreateCategory';
 import { importCategoryController } from '../modules/cars/useCases/importCategory';
 import { listCategoryController } from '../modules/cars/useCases/listCategories';
 
 const categoriesRouter = Router();
 
 categoriesRouter.post('/', (request, response) => {
-  console.log('test auto reload');
-  return createCategoryController.handle(request, response);
+  return createCategoryController().handle(request, response);
 });
 
 categoriesRouter.get('/', (request, response) => {
