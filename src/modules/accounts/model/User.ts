@@ -15,6 +15,9 @@ class User {
   @Column()
   password: string;
 
+  @Column()
+  avatar: string;
+
   @Column({ name: 'driver_license' })
   driverLicense: string;
 
