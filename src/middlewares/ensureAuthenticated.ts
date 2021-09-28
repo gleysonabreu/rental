@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { verify } from 'jsonwebtoken';
 
+import { AppError } from '../errors/AppError';
 import { UsersRepository } from '../modules/accounts/repositories/implementations/UsersRepository';
 
 interface IToken {
@@ -15,7 +16,7 @@ async function ensureAuthenticated(
   const authHeader = request.headers.authorization;
 
   if (!authHeader) {
-    throw new Error('Token not provided!');
+    throw new AppError('Token not provided', 401);
   }
 
   const [, token] = authHeader.split(' ');
@@ -30,12 +31,12 @@ async function ensureAuthenticated(
     const user = await usersRepository.findById(userId);
 
     if (!user) {
-      throw new Error('User does not exists.');
+      throw new AppError('User does not exists.', 401);
     }
 
     return next();
   } catch (error) {
-    throw new Error('Invalid token!');
+    throw new AppError('Invalid token!', 401);
   }
 }
 
