@@ -22,7 +22,7 @@
     "rules": {
         "prettier/prettier": "error",
         "camelcase": "off",
-        "import/no-unresolved": "error",
+        "import/no-unresolved": "off",
         "@typescript-eslint/naming-convention": [
         "error",
         {
@@ -52,7 +52,7 @@
         "warn",
         {
             "newlinesBetween": "always",
-            "groups": ["module", "/^@shared/", ["parent", "sibling", "index"]],
+            "groups": ["module", "/^@/", ["parent", "sibling", "index"]],
             "alphabetize": { "order": "asc", "ignoreCase": true }
         }
         ],
