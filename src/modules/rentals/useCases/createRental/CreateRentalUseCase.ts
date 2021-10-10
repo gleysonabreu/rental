@@ -1,12 +1,17 @@
+import { inject, injectable } from 'tsyringe';
+
 import { ICreateRentalDTO } from '@modules/rentals/dtos/ICreateRentalDTO';
 import { Rental } from '@modules/rentals/infra/typeorm/entities/Rental';
 import { IRentalsRepository } from '@modules/rentals/repositories/IRentalsRepository';
 import { IDateProvider } from '@shared/container/providers/DateProvider/IDateProvider';
 import { AppError } from '@shared/errors/AppError';
 
+@injectable()
 class CreateRentalUseCase {
   constructor(
+    @inject('RentalsRepository')
     private rentalsRepository: IRentalsRepository,
+    @inject('DateProvider')
     private dateProvider: IDateProvider,
   ) {}
   async execute({
