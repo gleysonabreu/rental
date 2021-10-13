@@ -13,6 +13,7 @@ interface IRentalsRepository {
   findOpenRentalByCar(carId: string): Promise<Rental | undefined>;
   findOpenRentalByUserId(userId: string): Promise<Rental | undefined>;
   findById(id: string): Promise<Rental | undefined>;
+  findByUser(userId: string): Promise<Rental[]>;
 }
 
 export { IRentalsRepository };
