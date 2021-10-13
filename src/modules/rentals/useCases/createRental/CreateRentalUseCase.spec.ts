@@ -1,6 +1,7 @@
 /* eslint-disable max-classes-per-file */
 import dayjs from 'dayjs';
 
+import { CarsInMemoryRepository } from '@modules/cars/repositories/in-memory/CarsInMemoryRepository';
 import { RentalsInMemoryRepository } from '@modules/rentals/repositories/in-memory/RentalsInMemoryRepository';
 import { DayjsDateProvider } from '@shared/container/providers/DateProvider/Implementations/DayjsDateProvider';
 import { AppError } from '@shared/errors/AppError';
@@ -10,15 +11,18 @@ import { CreateRentalUseCase } from './CreateRentalUseCase';
 let createRentalUseCase: CreateRentalUseCase;
 let rentalsRepository: RentalsInMemoryRepository;
 let dayjsDateProvider: DayjsDateProvider;
+let carsRepository: CarsInMemoryRepository;
 describe('CreateRentalUseCase', () => {
   const dayAdd24Hours = dayjs().add(1, 'day').toDate();
 
   beforeEach(() => {
     rentalsRepository = new RentalsInMemoryRepository();
     dayjsDateProvider = new DayjsDateProvider();
+    carsRepository = new CarsInMemoryRepository();
     createRentalUseCase = new CreateRentalUseCase(
       rentalsRepository,
       dayjsDateProvider,
+      carsRepository,
     );
   });
 
