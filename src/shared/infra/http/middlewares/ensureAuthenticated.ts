@@ -1,7 +1,9 @@
 import { NextFunction, Request, Response } from 'express';
 import { verify } from 'jsonwebtoken';
 
+import auth from '@config/auth';
 import { UsersRepository } from '@modules/accounts/infra/typeorm/repositories/UsersRepository';
+import { UsersTokensRepository } from '@modules/accounts/infra/typeorm/repositories/UsersTokensRepository';
 import { AppError } from '@shared/errors/AppError';
 
 interface IToken {
@@ -22,13 +24,13 @@ async function ensureAuthenticated(
   const [, token] = authHeader.split(' ');
 
   try {
-    const { sub: userId } = verify(
-      token,
-      '15a66dcd7feb56bc9f5682da06ad8dd9',
-    ) as IToken;
+    const { sub: userId } = verify(token, auth.secretRefreshToken) as IToken;
 
-    const usersRepository = new UsersRepository();
-    const user = await usersRepository.findById(userId);
+    const usersTokensRepository = new UsersTokensRepository();
+    const user = await usersTokensRepository.findByUserIdAndRefreshToken(
+      userId,
+      token,
+    );
 
     if (!user) {
       throw new AppError('User does not exists.', 401);
