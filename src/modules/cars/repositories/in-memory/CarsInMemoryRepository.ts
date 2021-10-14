@@ -9,7 +9,6 @@ class CarsInMemoryRepository implements ICarsRepository {
 
   async updateAvailable(carId: string, available: boolean): Promise<void> {
     const findIndex = this.cars.findIndex(car => car.id === carId);
-    console.log(carId);
     this.cars[findIndex].available = available;
   }
 
