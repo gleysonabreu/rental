@@ -6,7 +6,7 @@ import connect from '../index';
 async function createAdmin() {
   const connection = await connect();
   const password = await hash('admin', 8);
-  connection.query(
+  await connection.query(
     `INSERT INTO users (id, name, email, password, is_admin, created_at, driver_license)
     VALUES('${uuid()}', 'Admin', 'admin@admin.com', '${password}', true, 'NOW()', 'xxx-xxx')`,
   );
