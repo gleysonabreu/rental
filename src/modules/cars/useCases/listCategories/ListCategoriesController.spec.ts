@@ -27,7 +27,7 @@ describe('ListCategoriesController', () => {
   });
 
   it('should be able to get all categories', async () => {
-    const { token } = (
+    const { refreshToken } = (
       await request(app).post('/sessions').send({
         email: 'admin@admin.com',
         password: 'admin',
@@ -41,7 +41,7 @@ describe('ListCategoriesController', () => {
         description: 'List categories',
       })
       .set({
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${refreshToken}`,
       });
 
     const response = await request(app).get('/categories');

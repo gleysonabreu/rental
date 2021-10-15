@@ -27,7 +27,7 @@ describe('CreateCategoryController', () => {
   });
 
   it('should be able to create a new category', async () => {
-    const { token } = (
+    const { refreshToken } = (
       await request(app).post('/sessions').send({
         email: 'admin@admin.com',
         password: 'admin',
@@ -41,14 +41,14 @@ describe('CreateCategoryController', () => {
         description: 'Test category',
       })
       .set({
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${refreshToken}`,
       });
 
     expect(response.statusCode).toEqual(201);
   });
 
   it('should not be able to create a new category with name exists', async () => {
-    const { token } = (
+    const { refreshToken } = (
       await request(app).post('/sessions').send({
         email: 'admin@admin.com',
         password: 'admin',
@@ -62,7 +62,7 @@ describe('CreateCategoryController', () => {
         description: 'Test category',
       })
       .set({
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${refreshToken}`,
       });
 
     expect(response.statusCode).toEqual(400);

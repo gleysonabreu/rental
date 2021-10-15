@@ -37,7 +37,7 @@ async function ensureAuthenticated(
     }
 
     request.user = {
-      id: user.id,
+      id: user.userId,
     };
 
     return next();
