@@ -25,7 +25,7 @@ class UserToken {
   @Column({ name: 'refresh_token' })
   refreshToken: string;
 
-  @Column({ name: 'expire_date' })
+  @Column({ name: 'expires_date' })
   expiresDate: Date;
 
   @CreateDateColumn({ name: 'created_at' })
