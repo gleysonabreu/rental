@@ -13,6 +13,7 @@ type JWTRefreshToken = {
 
 interface IResponse {
   refreshToken: string;
+  token: string;
 }
 
 @injectable()
@@ -24,7 +25,12 @@ class RefreshTokenUseCase {
     private dateProvider: IDateProvider,
   ) {}
   async execute(token: string): Promise<IResponse> {
-    const { secretRefreshToken, expireInRefreshTokenDays } = auth;
+    const {
+      secretRefreshToken,
+      expireInRefreshTokenDays,
+      secretToken,
+      expireInToken,
+    } = auth;
 
     const { sub: userId, email } = verify(
       token,
@@ -60,7 +66,12 @@ class RefreshTokenUseCase {
       userId,
     });
 
-    return { refreshToken };
+    const newToken = sign({}, secretToken, {
+      subject: userId,
+      expiresIn: expireInToken,
+    });
+
+    return { refreshToken, token: newToken };
   }
 }
 
